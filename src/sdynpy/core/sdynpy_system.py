@@ -1134,7 +1134,10 @@ class System:
 
         num_nodes = node_positions.shape[0]
 
-        K, M = beamkm(node_positions, node_connectivity, bend_direction_1, **mat_props)
+        K, M = beamkm(node_positions, node_connectivity, bend_direction_1, 
+                      mat_props['ae'], mat_props['jg'], mat_props['ei1'], 
+                      mat_props['ei2'], mat_props['mass_per_length'], 
+                      mat_props['tmmi_per_length'])
         coordinates = from_nodelist(np.arange(num_nodes) + 1, directions=[1, 2, 3, 4, 5, 6])
         system = cls(coordinates, M, K)
         nodelist = node_array(np.arange(num_nodes) + 1, node_positions)
